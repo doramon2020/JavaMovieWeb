@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        tr {
+            line-height: 25px;
+            width: 25px;
+        }
+
+        td {
+            line-height: 25px;
+            width: 25px;
+        }
+
+        span {
+            line-height: 25px;
+            width: 25px;
+            z-index: 1;
+            text-align: center;
+            font-size: 11px;
+            display: table-cell;
+            cursor: pointer;
+            position: absolute;
+        }
+
+        img {
+            position: relative;
+            vertical-align: top;
+            width: 25px;
+            height: 25px;
+            display: inline-block;
+            border: 0;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="Seating-Theatre" style="width:325px;height:250px;" data-originalsize="tableW">
+        <table id="1" class="Seating-Area" data-area-number="1" cellspacing="0" cellpadding="0"
+            style="left:0%;top:0%;width:100%;height:100%;table-layout:fixed;">
+        </table>
+
+        <script>
+            var table = document.getElementById("1");
+            var array = [];
+            for (let i = "A".charCodeAt(); i < "I".charCodeAt(); i++) {
+                let createTr = document.createElement("tr");
+                let createTd = document.createElement("td");
+                for (let j = 1; j < 12; j++) {
+                    let imageTd = document.createElement("img");
+                    let createTdTemp = document.createElement("td");
+                    imageTd.src = "./img/standard_available.png";
+                    //殘障位現場訂
+                    if (String.fromCharCode(i) === "A" && (j === 5 || j === 7)) {
+                        imageTd.src = "./img/wheelchair_available.png";
+                        createTdTemp.appendChild(imageTd);
+                        createTd.appendChild(createTdTemp);
+                        continue;
+                    //空格,可改做走道
+                    } else if (String.fromCharCode(i) === "A" && j === 6) {
+                        createTd.appendChild(createTdTemp);
+                        continue;
+                    }
+                    let createSpan = document.createElement("span")
+                    createSpan.innerText = j;
+                    createTdTemp.id = String.fromCharCode(i) + j;
+                    createTdTemp.appendChild(createSpan);
+                    createTdTemp.appendChild(imageTd);
+                    createTd.appendChild(createTdTemp);
+                    createTdTemp.onclick = function () {
+                        if (!array.includes(createTdTemp.id)) {
+                            //3是票數數目變數
+                            if (array.length < 3) {
+                                array.push(createTdTemp.id);
+                                imageTd.src = "./img/standard_selected.png";
+                            } else {
+                                let removeImg = array.shift();
+                                console.log(removeImg);
+                                document.getElementById(removeImg).querySelector("img").src = "./img/standard_available.png";
+                                imageTd.src = "./img/standard_selected.png";
+                                array.push(createTdTemp.id);
+                            }
+                        }
+                    }
+                }
+                createTr.appendChild(createTd);
+                table.appendChild(createTr);
+            }
+        </script>
+</body>
+
+</html>
