@@ -1,0 +1,191 @@
+body {
+    background-image: url(../img/universe.png);
+    background-position: 50% 0%;
+    background-size: 55%;
+    background-repeat: no-repeat;
+    background-color: #000022;
+}
+
+button {
+    border-radius: 10%;
+    border: 0;
+}
+
+img.icon {
+    width: 100px;
+    height: 100px;
+}
+
+div.bottom>div>ul>li {
+    color: #ffffff;
+}
+
+/* dropdown設定 */
+
+a.nav-link:hover {
+    color: #ffffff;
+    /* background-color: #fcfcfc; */
+    font-size: 0.7rem;
+}
+
+.navbar-nav>li>.dropdown-menu {
+    background-color: #564163;
+}
+
+.navbar-nav>li>.dropdown-menu>a {
+    color: #ffffff;
+}
+
+.navbar-nav>li>.dropdown-menu>a:hover {
+    color: #e5dbdb;
+    font-size: 1.1rem;
+    background-color: #564163;
+}
+
+/* emoji相關 */
+@font-face {
+    font-family: emojiFont;
+    src: url(../Fonts/EmojiSymbols-Regular.woff);
+}
+
+div>.emoji {
+    color: #ec4949;
+    line-height: 50px;
+    font-size: 50px;
+    font-family: emojiFont;
+    vertical-align: -30%;
+}
+
+div>span.title {
+    font-size: 30px;
+    color: #ffffff;
+    vertical-align: middle;
+}
+
+/* 購票懸浮視窗 */
+
+.buyTicket .emoji {
+    color: #ec4949;
+    position: fixed;
+    font-size: 80px;
+    bottom: 18%;
+    right: 1%;
+}
+
+.buyTicket .emoji:hover {
+    color: #ec4949;
+    font-size: 85px;
+    background-color: #000022;
+    text-shadow: #ffffff 0.1em 0.1em 0.1em;
+}
+
+/* 購票燈箱 */
+
+div.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: hsla(0, 0%, 0%, .5);
+    display: none;
+}
+
+/* 元素 article 置中及基本樣式 */
+div.overlay>div {
+    background-color: #000022;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #ddd;
+    padding: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.buyTicket_close {
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    display: block;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-family: Helvetica;
+    font-size: 18px;
+    border-radius: 20px;
+    background: #999;
+    color: #FFF;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .3);
+    -moz-transition: linear .06s;
+    -webkit-transition: linear .06s;
+    transition: linear .06s;
+    padding: 0;
+    text-align: center;
+    outline: none;
+    cursor: pointer;
+}
+
+.buyTicket_close:hover {
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    right: 8px;
+    top: 8px;
+    color: #FFF;
+    box-shadow: 0 1px 3px rgba(209, 40, 42, .5);
+    background: #ec4949;
+    border-radius: 24px;
+    transition: all 0.2s ease-out;
+    opacity: 0.8;
+}
+
+/* 紫色div */
+
+hr {
+    border: 0;
+    height: 0;
+    border-top: 1px solid #ffffff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.purpleblock {
+    position: relative;
+    padding-left: 15%;
+    padding-top: 20px;
+    min-height: 300px;
+    border-radius: 15%;
+    color: #ffffff;
+    background-color: #332749;
+}
+
+.row.purpleblock {
+    padding-left: 5%;
+    text-align: center;
+}
+
+.purpleblock>a {
+    color: #ffffff;
+}
+/* 下拉欄位長度 */
+select {
+    text-align: center;
+    width: 60%;
+    margin-bottom: 10px;
+}
+
+.bt_buyTicket {
+    background-color: #6591C3;
+    position: absolute;
+    bottom: 45%;
+    right: 5vw;
+}
+
+.bt_playGame {
+    background-color: #71619D;
+    position: absolute;
+    bottom: 15%;
+    right: 5vw;
+}
