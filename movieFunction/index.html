@@ -13,13 +13,27 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.css" />
     <style>
         body {
-            /* background-image: url(./img/130392308.jpg);
-            background-repeat: no-repeat; */
+            background-image: url(./img/universe.png);
+            background-position: 50% 0%;
+            background-size: 55%;
+            background-repeat: no-repeat;
             background-color: #000022;
+        }
+
+        button {
+            border-radius: 10%;
+            border: 0;
         }
 
         div.grid_24 {
             display: flex;
+        }
+
+        div.bottoms {
+            background-image: url(./img/universe.png);
+            background-position: 50% 30%;
+            background-size: 55%;
+            background-repeat: no-repeat;
         }
 
         div.bottom>div>ul>li {
@@ -32,7 +46,6 @@
 
         a.nav-link:hover {
             color: #ffffff;
-            /* background-color: #fcfcfc; */
             font-size: 0.7rem;
         }
 
@@ -89,11 +102,9 @@
             color: #ffffff;
         }
 
-        .offset-md-11 > button {
+        .offset-md-11>button {
             background-color: #71619D;
             color: #ffffff;
-            border-radius: 10%;
-            border: 0px;
         }
 
         /* 紫色div */
@@ -109,45 +120,133 @@
             position: relative;
             padding-left: 15%;
             padding-top: 20px;
-            height: 300px;
+            min-height: 300px;
             border-radius: 15%;
             color: #ffffff;
-            background-color: #564163;
+            background-color: #332749;
         }
 
-        .purpleblock > a {
+        .row.purpleblock {
+            padding-left: 5%;
+            text-align: center;
+        }
+
+        .purpleblock>a {
             color: #ffffff;
         }
 
         select {
             text-align: center;
+            margin-bottom: 10px;
             width: 60%;
         }
 
         .bt_buyTicket {
             background-color: #6591C3;
             position: absolute;
-            bottom: 25%;
-            right: 9%;
-            border-radius: 10%;
-            border: 0;
+            bottom: 40%;
+            right: 5vw;
         }
 
         .bt_playGame {
             background-color: #71619D;
             position: absolute;
-            bottom: 10%;
-            right: 9%;
-            border-radius: 10%;
-            border: 0;
+            bottom: 15%;
+            right: 5vw;
         }
 
-        /* 對話視窗 */
+        /* 頁籤按鈕 */
+        .bt_info {
+            background-color: #71619D;
+        }
 
-        .pushDiv {
+        .bt_ticket {
+            background-color: #6591C3;
+            border-radius: 0%;
+            border: 1px solid black;
+        }
+
+        /* 購票懸浮視窗 */
+
+        .buyTicket .emoji {
+            color: #ec4949;
+            position: fixed;
+            font-size: 80px;
+            bottom: 18%;
+            right: 1%;
+        }
+
+        .buyTicket .emoji:hover {
+            color: #ec4949;
+            font-size: 85px;
+            background-color: #000022;
+            text-shadow: #ffffff 0.1em 0.1em 0.1em;
+        }
+
+        /* 購票燈箱 */
+
+        div.overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: hsla(0, 0%, 0%, .5);
+            display: none;
+        }
+
+        /* 元素 article 置中及基本樣式 */
+        div.overlay>div {
+            background-color: #000022;
+            width: 90%;
+            max-width: 600px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #ddd;
+            padding: 10px;
             position: absolute;
-            bottom: 10%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
+
+        .buyTicket_close {
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            display: block;
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            font-family: Helvetica;
+            font-size: 18px;
+            border-radius: 20px;
+            background: #999;
+            color: #FFF;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, .3);
+            -moz-transition: linear .06s;
+            -webkit-transition: linear .06s;
+            transition: linear .06s;
+            padding: 0;
+            text-align: center;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .buyTicket_close:hover {
+            width: 24px;
+            height: 24px;
+            line-height: 24px;
+            right: 8px;
+            top: 8px;
+            color: #FFF;
+            box-shadow: 0 1px 3px rgba(209, 40, 42, .5);
+            background: #ec4949;
+            border-radius: 24px;
+            transition: all 0.2s ease-out;
+            opacity: 0.8;
+        }
+
+        /* 對話懸浮視窗 */
 
         .chat {
             color: #ffffff;
@@ -166,7 +265,7 @@
             bottom: 13%;
             right: 0.5%;
             border-radius: 50%;
-            background-color: red;
+            background-color: #ec4949;
         }
 
         .chat>p {
@@ -188,7 +287,6 @@
             width: 300px;
             height: 400px;
             /* border: 1px solid blue; */
-            ;
         }
 
         section.result_block {
@@ -311,12 +409,110 @@
             outline: none;
         }
 
-        div.all_block > div > img {
+        div.all_block>div>img {
             position: absolute;
             width: 10%;
             height: 10%;
             right: 0%;
             z-index: 1;
+        }
+
+        /* 整個頁籤及內容最外層區塊 */
+        div.tab_container {
+            box-sizing: border-box;
+            color: #ffffff;
+        }
+
+        /* 頁籤區塊 */
+        div.tab_container div.tab_list_block {
+            padding-left: 20px;
+        }
+
+        /* 頁籤列表 */
+        div.tab_container div.tab_list_block ul.tab_list {
+            list-style: none;
+            display: inline-block;
+            margin: 0;
+            padding: 0;
+        }
+
+        div.tab_container div.tab_list_block ul.tab_list>li {
+            display: inline-block;
+            border-radius: 5px 5px 0 0;
+        }
+
+        div.tab_container div.tab_list_block ul.tab_list>li>a {
+            text-decoration: none;
+            display: inline-block;
+            border: 1px solid #71619D;
+            border-bottom: 1px solid #71619D;
+            background-color: #71619D;
+            padding: 2px 20px;
+            border-radius: 5px 5px 0 0;
+            cursor: pointer;
+            color: #ccc;
+            position: relative;
+            top: 1px;
+        }
+
+        /* 畫出底部黑線 */
+        div.tab_container div.tab_list_block ul.tab_list>li>a::after {
+            content: "";
+            position: absolute;
+            width: calc(100% + 2px);
+            height: 1px;
+            background-color: #71619D;
+            bottom: -1px;
+            left: -1px;
+            z-index: 1;
+        }
+
+        div.tab_container div.tab_list_block ul.tab_list>li>a.-on {
+            border: 1px solid #71619D;
+            border-bottom: 1px solid #71619D;
+            background-color: #BB44A3;
+        }
+
+        /* 將底部黑線改成白色 */
+        /* div.tab_container div.tab_list_block ul.tab_list>li>a.-on::after {
+            width: 100%;
+            left: 0;
+        } */
+
+        /* 頁籤內容區塊 */
+
+        div.tab_container div.tab_contents div.tab {
+            padding: 10px;
+            display: none;
+        }
+
+        div.tab_container div.tab_contents div.tab.-on {
+            display: block;
+        }
+
+        /* emoji相關 */
+        @font-face {
+            font-family: emojiFont;
+            src: url(./Fonts/EmojiSymbols-Regular.woff);
+        }
+
+        div>.emoji {
+            color: #ec4949;
+            line-height: 50px;
+            font-size: 50px;
+            font-family: emojiFont;
+            vertical-align: -30%;
+        }
+
+        div>span.title {
+            font-size: 30px;
+            color: #ffffff;
+            vertical-align: middle;
+        }
+
+        .custom-gutters > .justify-content-center {
+            padding-left: 15px;
+            padding-right: 15px;
         }
     </style>
 </head>
@@ -393,6 +589,9 @@
         </div>
     </nav>
     <div class="container">
+        <span class="emoji">&#x1F4F9;</span>
+        <span class="title">電影預告片</span>
+        <hr>
         <div class="ad_board">
             <div>
                 <iframe width=100% height="315" src="http://www.youtube.com/embed/nIsCs9_-LP8" frameborder="0"
@@ -416,6 +615,9 @@
     </div>
 
     <div class="container">
+        <span class="emoji">&#127916;</span>
+        <span class="title">現正熱映</span>
+        <hr>
         <div class="row">
             <div class="col-sm-3">
                 <div class="card">
@@ -497,43 +699,38 @@
     <div class="container">
         <div class="row">
             <div class="col-12 col-sm-12 col-lg-6">
-                <i style="font-size: 30px;color: #ffffff;" class="fas fa-ticket-alt"></i>
-                <span style="font-size: 30px;color: #ffffff;">快速購票</span>
+                <span class="emoji">&#x1F3AB;</span>
+                <span class="title">快速購票</span>
                 <hr>
                 <div class="purpleblock">
-                    <div>影片<br>
+                    <div>影片</div>
                         <select name="" id="">
                             <option value="">火影</option>
                             <option value="">柯南</option>
                             <option value="">小新</option>
                         </select>
-                    </div>
-                    <br>
-                    <div>日期<br>
+                    <div>日期</div>
                         <select name="" id="">
                             <option value="">火影</option>
                             <option value="">柯南</option>
                             <option value="">小新</option>
                         </select>
-                    </div>
-                    <br>
-                    <div>場次<br>
+                    <div>場次</div>
                         <select name="" id="">
                             <option value="">火影</option>
                             <option value="">柯南</option>
                             <option value="">小新</option>
                         </select>
-                    </div>
                     <button class="bt_buyTicket">前往購票</button>
-                    <div class="pushDiv">
+                    <h6>
                         不知道看什麼嗎，讓我們來幫您推薦！
-                    </div>
+                    </h6>
                     <button class="bt_playGame">玩小遊戲</button>
                 </div>
             </div>
             <div class="col-12 col-sm-12 col-lg-6">
-                <i style="font-size: 30px;color: #ffffff;" class="fas fa-newspaper"></i>
-                <span style="font-size: 30px;color: #ffffff;">最新消息</span>
+                <span class="emoji">&#127916;</span>
+                <span class="title">最新消息</span>
                 <hr>
                 <div class="purpleblock">
                     <a href="">新開幕，全面九折!...<i class="far fa-hand-pointer"></i></a>
@@ -550,7 +747,249 @@
         </div>
     </div>
 
-    <div class="container-fluid">
+    <div class="tab_container container">
+        <span class="emoji">&#x1F4C6;</span>
+        <span class="title">時刻表</span>
+        <hr>
+        <div class="tab_list_block">
+            <ul class="tab_list">
+                <li><a href="#" data-target="tab1" class="tab -on">頁籤一</a></li>
+                <li><a href="#" data-target="tab2" class="tab">頁籤二</a></li>
+                <li><a href="#" data-target="tab3" class="tab">頁籤三</a></li>
+            </ul>
+        </div>
+
+        <div class="tab_contents">
+            <div class="tab tab1 -on">
+                <div class="container">
+                    <div class="row purpleblock align-items-center">
+                        <div class="col-12 col-lg-3">
+                            <img src="./img/moviepaper.jpg" alt="" style="width: 160px;height: 220px;">
+                        </div>
+                        <div class="col-12 col-lg-9">
+                            <div class="container custom-gutters">
+                                <div class="row justify-content-center">
+                                    <div class="col-4">
+                                        鬼滅之刃劇場版無限列車篇
+                                    </div>
+                                    <div class="col">
+                                        <button class="bt_info">
+                                            電影資訊
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <br>
+                            </div>
+                            <div class="container custom-gutters">
+                                <div class="row justify-content-center">
+                                    <div class="col-6 col-sm-3 col-lg-3">
+                                        <button class="bt_ticket">10:00 - 12:00
+                                            <br>
+                                            前往購買
+                                        </button>
+                                    </div>
+                                    <div class="col-6 col-sm-3 col-lg-3">
+                                        <button class="bt_ticket">10:00 - 12:00
+                                            <br>
+                                            前往購買
+                                        </button>
+                                    </div>
+                                    <div class="col-6 col-sm-3 col-lg-3">
+                                        <button class="bt_ticket">10:00 - 12:00
+                                            <br>
+                                            前往購買
+                                        </button>
+                                    </div>
+                                    <div class="col-6 col-sm-3 col-lg-3">
+                                        <button class="bt_ticket">10:00 - 12:00
+                                            <br>
+                                            前往購買
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="container custom-gutters">
+                                <div class="row justify-content-center">
+                                    <div class="col-6 col-sm-3 col-lg-3">
+                                        <button class="bt_ticket">10:00 - 12:00
+                                            <br>
+                                            前往購買
+                                        </button>
+                                    </div>
+                                    <div class="col-6 col-sm-3 col-lg-3">
+                                        <button class="bt_ticket">10:00 - 12:00
+                                            <br>
+                                            前往購買
+                                        </button>
+                                    </div>
+                                    <div class="col-6 col-sm-3 col-lg-3">
+                                        <button class="bt_ticket">10:00 - 12:00
+                                            <br>
+                                            前往購買
+                                        </button>
+                                    </div>
+                                    <div class="col-6 col-sm-3 col-lg-3">
+                                        <button class="bt_ticket">10:00 - 12:00
+                                            <br>
+                                            前往購買
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="container custom-gutters">
+                                <div class="row justify-content-center">
+                                    <div class="col-6 col-sm-3 col-lg-3">
+                                        <button class="bt_ticket">10:00 - 12:00
+                                            <br>
+                                            前往購買
+                                        </button>
+                                    </div>
+                                    <div class="col-6 col-sm-3 col-lg-3">
+                                        <button class="bt_ticket">10:00 - 12:00
+                                            <br>
+                                            前往購買
+                                        </button>
+                                    </div>
+                                    <div class="col-6 col-sm-3 col-lg-3">
+                                        <button class="bt_ticket">10:00 - 12:00
+                                            <br>
+                                            前往購買
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="container">
+                        <div class="row purpleblock align-items-center">
+                            <div class="col-12 col-lg-3">
+                                <img src="./img/moviepaper.jpg" alt="" style="width: 160px;height: 220px;">
+                            </div>
+                            <div class="col-12 col-lg-9">
+                                <div class="container custom-gutters">
+                                    <div class="row justify-content-center">
+                                        <div class="col-4">
+                                            鬼滅之刃劇場版無限列車篇
+                                        </div>
+                                        <div class="col">
+                                            <button class="bt_info">
+                                                電影資訊
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <br>
+                                </div>
+                                <div class="container custom-gutters">
+                                    <div class="row justify-content-center">
+                                        <div class="col-6 col-sm-3 col-lg-3">
+                                            <button class="bt_ticket">10:00 - 12:00
+                                                <br>
+                                                前往購買
+                                            </button>
+                                        </div>
+                                        <div class="col-6 col-sm-3 col-lg-3">
+                                            <button class="bt_ticket">10:00 - 12:00
+                                                <br>
+                                                前往購買
+                                            </button>
+                                        </div>
+                                        <div class="col-6 col-sm-3 col-lg-3">
+                                            <button class="bt_ticket">10:00 - 12:00
+                                                <br>
+                                                前往購買
+                                            </button>
+                                        </div>
+                                        <div class="col-6 col-sm-3 col-lg-3">
+                                            <button class="bt_ticket">10:00 - 12:00
+                                                <br>
+                                                前往購買
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="container custom-gutters">
+                                    <div class="row justify-content-center">
+                                        <div class="col-6 col-sm-3 col-lg-3">
+                                            <button class="bt_ticket">10:00 - 12:00
+                                                <br>
+                                                前往購買
+                                            </button>
+                                        </div>
+                                        <div class="col-6 col-sm-3 col-lg-3">
+                                            <button class="bt_ticket">10:00 - 12:00
+                                                <br>
+                                                前往購買
+                                            </button>
+                                        </div>
+                                        <div class="col-6 col-sm-3 col-lg-3">
+                                            <button class="bt_ticket">10:00 - 12:00
+                                                <br>
+                                                前往購買
+                                            </button>
+                                        </div>
+                                        <div class="col-6 col-sm-3 col-lg-3">
+                                            <button class="bt_ticket">10:00 - 12:00
+                                                <br>
+                                                前往購買
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="container custom-gutters">
+                                    <div class="row justify-content-center">
+                                        <div class="col-6 col-sm-3 col-lg-3">
+                                            <button class="bt_ticket">10:00 - 12:00
+                                                <br>
+                                                前往購買
+                                            </button>
+                                        </div>
+                                        <div class="col-6 col-sm-3 col-lg-3">
+                                            <button class="bt_ticket">10:00 - 12:00
+                                                <br>
+                                                前往購買
+                                            </button>
+                                        </div>
+                                        <div class="col-6 col-sm-3 col-lg-3">
+                                            <button class="bt_ticket">10:00 - 12:00
+                                                <br>
+                                                前往購買
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                            </div>
+                        </div>
+                </div>
+            </div>
+
+            <div class="tab tab2">
+                頁籤二的內容
+            </div>
+
+            <div class="tab tab3">
+                頁籤三的內容<br>
+                內容
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid bottoms">
+        <div>
+            <br>
+            <br>
+            <br>
+        </div>
         <div class="row bottom">
             <div class="col">
                 <img src="./img/icon.png" alt="" class="icon">
@@ -603,6 +1042,45 @@
             </div>
         </div>
     </div>
+
+    <div class="buyTicket">
+        <span class="emoji">&#x1F3AB;</span>
+    </div>
+
+    <div class="overlay">
+        <div>
+            <div class="buyTicket_close">X</div>
+            <span class="emoji">&#x1F3AB;</span>
+            <span class="title">快速購票</span>
+            <hr>
+            <div class="purpleblock">
+                <h6>影片</h6>
+                    <select name="" id="">
+                        <option value="">火影</option>
+                        <option value="">柯南</option>
+                        <option value="">小新</option>
+                    </select>
+                <h6>日期</h6>
+                    <select name="" id="">
+                        <option value="">火影</option>
+                        <option value="">柯南</option>
+                        <option value="">小新</option>
+                    </select>
+                <h6>場次</h6>
+                    <select name="" id="">
+                        <option value="">火影</option>
+                        <option value="">柯南</option>
+                        <option value="">小新</option>
+                    </select>
+                <button class="bt_buyTicket">前往購票</button>
+                <h6>
+                    不知道看什麼嗎，讓我們來推薦！
+                </h6>
+                <button class="bt_playGame">玩小遊戲</button>
+            </div>
+        </div>
+    </div>
+
     <div class="chat">
         <span>1</span>
         <p><i class="far fa-comment-alt"></i></p>
@@ -641,31 +1119,57 @@
                 dots: true,
             });
 
-            $("div.chat").on("click", function () {
-                $(this).toggleClass("-none");
-                $("div.all_block").toggleClass("-none");
-                $("div.chat > span").text("");
-                $("div.chat > span").css("background-color","#000022");
+            //快速購票
+
+            $("div.buyTicket").on("click", function () {
+                $("div.overlay").fadeIn();
             })
 
-            $("div.all_block > div > img").on("click", function () {
-                $("div.all_block").toggleClass("-none");
-                $("div.chat").toggleClass("-none");
+            $("div.buyTicket_close").on("click", function () {
+                $("div.overlay").fadeOut();
             })
 
-            $("input.stock_text").on("keydown", function (e) {
-                if (e.which == 13) {
-                    $("button.send_stock").click();
-                }
+            // 頁籤
+
+            $("a.tab").on("click", function (e) {
+                e.preventDefault();
+
+                /* 將頁籤列表移除所有 -on，再將指定的加上 -on */
+                $(this).closest("ul").find("a.tab").removeClass("-on");
+                $(this).addClass("-on");
+
+                /* 找到對應的頁籤內容，加上 -on 來顯示 */
+                $("div.tab").removeClass("-on");
+                $("div.tab." + $(this).attr("data-target")).addClass("-on");
             });
+        });
 
-            $("button.send_stock").on("click", function () {
-                let input_text = ($("input.stock_text").val()).trim();
-                if (input_text == "") {
-                    alert("請輸入資料");
-                } else {
+        // 聊天相關
+        $("div.chat").on("click", function () {
+            $(this).toggleClass("-none");
+            $("div.all_block").toggleClass("-none");
+            $("div.chat > span").text("");
+            $("div.chat > span").css("background-color", "#000022");
+        })
 
-                    let html = `
+        $("div.all_block > div > img").on("click", function () {
+            $("div.all_block").toggleClass("-none");
+            $("div.chat").toggleClass("-none");
+        })
+
+        $("input.stock_text").on("keydown", function (e) {
+            if (e.which == 13) {
+                $("button.send_stock").click();
+            }
+        });
+
+        $("button.send_stock").on("click", function () {
+            let input_text = ($("input.stock_text").val()).trim();
+            if (input_text == "") {
+                alert("請輸入資料");
+            } else {
+
+                let html = `
         <ul class="search_list">
           <li>
             <div class="item_block">
@@ -678,25 +1182,21 @@
         </ul>
       `;
 
-                    $("div.search_container").append(html);
+                $("div.search_container").append(html);
 
 
-                    // 重點1：以下方式取得 section.result_block 的可捲動區域高度(content 區域)
-                    console.log($('section.result_block').prop("scrollHeight"));
+                // 重點1：以下方式取得 section.result_block 的可捲動區域高度(content 區域)
+                console.log($('section.result_block').prop("scrollHeight"));
 
-                    // 重點2：透過 animate 使用 scrollTop 指定要滑動到離上方指定位置
-                    $("section.result_block").animate({
-                        scrollTop: $('section.result_block').prop("scrollHeight")
-                    }, 500);
+                // 重點2：透過 animate 使用 scrollTop 指定要滑動到離上方指定位置
+                $("section.result_block").animate({
+                    scrollTop: $('section.result_block').prop("scrollHeight")
+                }, 500);
 
-
-
-                    // 欄位清空
-                    $("input.stock_text").val("");
-                }
-            });
-
-        })
+                // 欄位清空
+                $("input.stock_text").val("");
+            }
+        });
     </script>
 </body>
 
