@@ -9,6 +9,11 @@ body {
 button {
     border-radius: 10%;
     border: 0;
+    margin-bottom: 20px;
+}
+
+.nav-item > a > button {
+    margin-bottom: 0px;
 }
 
 img.icon {
@@ -75,7 +80,7 @@ div>span.title {
 .buyTicket .emoji:hover {
     color: #ec4949;
     font-size: 85px;
-    background-color: #000022;
+    background-color: #00002200;
     text-shadow: #ffffff 0.1em 0.1em 0.1em;
 }
 

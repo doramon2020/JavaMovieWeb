@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./vendors/bootstrap/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
+    <link rel="stylesheet" href="./css/back_template.css">
+    <script src="./vendors/jquery/jquery-3.5.1.min.js"></script>
+    <style>
+ /* 整個頁籤及內容最外層區塊 */
+ div.tab_container {
+            box-sizing: border-box;
+            color: #ffffff;
+        }
+
+        /* 頁籤區塊 */
+        div.tab_container div.tab_list_block {
+            padding-left: 20px;
+        }
+
+        /* 頁籤列表 */
+        div.tab_container div.tab_list_block ul.tab_list {
+            list-style: none;
+            display: inline-block;
+            margin: 0;
+            padding: 0;
+        }
+
+        div.tab_container div.tab_list_block ul.tab_list>li {
+            display: inline-block;
+            border-radius: 5px 5px 0 0;
+        }
+
+        div.tab_container div.tab_list_block ul.tab_list>li>a {
+            text-decoration: none;
+            display: inline-block;
+            border: 1px solid #71619D;
+            border-bottom: 1px solid #71619D;
+            background-color: #71619D;
+            padding: 2px 20px;
+            border-radius: 5px 5px 0 0;
+            cursor: pointer;
+            color: #ccc;
+            position: relative;
+            top: 1px;
+        }
+
+        /* 畫出底部黑線 */
+        div.tab_container div.tab_list_block ul.tab_list>li>a::after {
+            content: "";
+            position: absolute;
+            width: calc(100% + 2px);
+            height: 1px;
+            background-color: #71619D;
+            bottom: -1px;
+            left: -1px;
+            z-index: 1;
+        }
+
+        div.tab_container div.tab_list_block ul.tab_list>li>a.-on {
+            border: 1px solid #71619D;
+            border-bottom: 1px solid #71619D;
+            background-color: #BB44A3;
+        }
+
+        /* 頁籤內容區塊 */
+
+        div.tab_contents {
+            color: #332749;
+        }
+
+        div.tab_container div.tab_contents div.tab {
+            padding: 10px;
+            display: none;
+        }
+
+        div.tab_container div.tab_contents div.tab.-on {
+            display: block;
+        }
+
+        div>.emoji {
+            color: #ec4949;
+            line-height: 50px;
+            font-size: 50px;
+            font-family: emojiFont;
+            vertical-align: -30%;
+        }
+
+        .time > li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper" id="header"></div>
+    <script>
+        $("#header").load("./template/back_template.html")
+    </script>
+
+    <!-- Page Content  -->
+    <div id="content">
+        <!-- 右上按鈕 -->
+        <div class="container-fluid">
+            <button type="button" id="sidebarCollapse" class="navbar-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        <!-- 內容 -->
+
+        <div class="tab_container container">
+            <div class="tab_list_block">
+                <ul class="tab_list time">
+                </ul>
+            </div>
+    
+            <div class="tab_contents">
+                <div class="tab tab1 -on">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col"
+                                            style="margin-bottom: 10px;padding-left: 5px;background-color: lightpink;">
+                                            A廳
+                                        </div>
+                                    </div>
+                                    <div class="row align-items-center">
+                                        <div class="col-4">
+                                            <ul>
+                                                <li style="margin-top:14px;">09:00</li>
+                                                <li>11:30</li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-1" style="background-color: red;min-width: 1px;min-height: 10vh;">
+                                        </div>
+                                        <div class="col" style="text-align: center;">鬼滅之刃續一千七百八十九集</div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="container">
+                                    <div class="row align-items-center">
+                                        <div class="col-4">
+                                            <ul>
+                                                <li style="margin-top:14px;">09:00</li>
+                                                <li>11:30</li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-1" style="background-color: red;min-width: 1px;min-height: 10vh;">
+                                        </div>
+                                        <div class="col" style="text-align: center;">鬼滅之刃續一千七百八十九</div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="container">
+                                    <div class="row align-items-center">
+                                        <div class="col-4">
+                                            <ul>
+                                                <li style="margin-top:14px;">09:00</li>
+                                                <li>11:30</li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-1" style="background-color: red;min-width: 1px;min-height: 10vh;">
+                                        </div>
+                                        <div class="col" style="text-align: center;">鬼滅之刃續一千七百八十九</div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="container">
+                                    <div class="row align-items-center">
+                                        <div class="col-4">
+                                            <ul>
+                                                <li style="margin-top:14px;">09:00</li>
+                                                <li>11:30</li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-1" style="background-color: red;min-width: 1px;min-height: 10vh;">
+                                        </div>
+                                        <div class="col" style="text-align: center;">鬼滅之刃續一千七百八十九集</div>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                            <div class="col">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col"
+                                            style="margin-bottom: 10px;padding-left: 5px;background-color: lightpink;">
+                                            B廳
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <div class="emoji">&#x1F3AC;</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                            <div class="col">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col"
+                                            style="margin-bottom: 10px;padding-left: 0px;margin-right: 0px;background-color: lightpink;box-sizing: border-box;">
+                                            C廳
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <div class="emoji">&#x1F3AC;</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                            <div class="col">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col"
+                                            style="margin-bottom: 10px;padding-left: 0px;background-color: lightpink;">
+                                            D廳
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <div class="emoji">&#x1F3AC;</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                            <div class="col">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col"
+                                            style="margin-bottom: 10px;padding-left: 0px;background-color: lightpink;">
+                                            E廳
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <div class="emoji">&#x1F3AC;</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab tab2">
+                        頁籤二的內容
+                </div>
+    
+                <div class="tab tab3">
+                    頁籤三的內容<br>
+                    內容
+                </div>
+            </div>
+    </div>
+
+
+    <script src="./vendors/popper/popper.min.js"></script>
+    <script src="./vendors/bootstrap/js/bootstrap.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // 收縮視窗
+            $("#sidebar").mCustomScrollbar({
+                theme: "minimal"
+            });
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar, #content').toggleClass('active');
+                $(this).toggleClass('active');
+                $('.collapse.in').toggleClass('in');
+                $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+            });
+        });
+    </script>
+    <script>
+        let month = new Date().getMonth() + 1;
+        let day = new Date().getDate();
+        for (let i = 0; i < 3; i++) {
+            let timestamp = new Date(new Date().setDate(new Date().getDate() + i)).getTime();
+            let month = new Date(new Date().setDate(new Date().getDate() + i)).getMonth() + 1;
+            let day = new Date(new Date().setDate(new Date().getDate() + i)).getDate();
+            $(".time").append(`
+        <li><a href="#" data-target="tab${i + 1}" class="tab ${i === 0 ? "-on" : ""}">${month}月${day}日</a></li>
+    `)
+        }
+
+        $("button").on("click", function () {
+            console.log($(this).val());
+        })
+
+        $("a.tab").on("click", function (e) {
+            e.preventDefault();
+
+            /* 將頁籤列表移除所有 -on，再將指定的加上 -on */
+            $(this).closest("ul").find("a.tab").removeClass("-on");
+            $(this).addClass("-on");
+
+            /* 找到對應的頁籤內容，加上 -on 來顯示 */
+            $("div.tab").removeClass("-on");
+            $("div.tab." + $(this).attr("data-target")).addClass("-on");
+        });
+    </script>
+</body>
+
+</html>

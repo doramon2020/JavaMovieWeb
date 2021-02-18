@@ -6,21 +6,640 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./css/reset.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    
+    <link rel="stylesheet" href="./vendors/bootstrap/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
     <style>
+        /*
+    DEMO STYLE
+*/
+        @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 
+
+        body {
+
+            background: #fafafa;
+            text-align: center;
+        }
+
+        p {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1em;
+            font-weight: 300;
+            line-height: 1.7em;
+            color: #999;
+        }
+
+        a,
+        a:hover,
+        a:focus {
+            color: inherit;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .navbar {
+            padding: 15px 10px;
+            background: #fff;
+            border: none;
+            border-radius: 0;
+            margin-bottom: 40px;
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-btn {
+            box-shadow: none;
+            outline: none !important;
+            border: none;
+        }
+
+        .line {
+            width: 100%;
+            height: 1px;
+            border-bottom: 1px dashed #ddd;
+            margin: 40px 0;
+        }
+
+        /* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
+
+        .wrapper {
+            display: flex;
+            width: 100%;
+        }
+
+        #sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100vh;
+            min-width: 200px;
+            max-width: 200px;
+            background: #564163;
+            color: #fff;
+            transition: all 0.7s cubic-bezier(0.945, 0.020, 0.270, 0.665);
+            transform-origin: bottom left;
+        }
+
+        #sidebar.active {
+            margin-left: -200px;
+            transform: rotateY(100deg);
+        }
+
+        #sidebar .sidebar-header {
+            padding: 20px;
+            background: #564163;
+        }
+
+        #sidebar ul.components {
+            padding: 20px 0;
+            border-bottom: 1px solid #564163;
+        }
+
+        #sidebar ul p {
+            color: #fff;
+            padding: 10px;
+        }
+
+        #sidebar ul li a {
+            padding: 10px;
+            font-size: 1.1em;
+            display: block;
+        }
+
+        #sidebar ul li a:hover {
+            color: #ffffff;
+            background: #71619D;
+        }
+
+        #sidebar ul li.active > a:hover {
+            color: #ffffff;
+            background: #71619D;
+        }
+
+
+        #sidebar ul li.active>a,
+        a[aria-expanded="true"] {
+            color: #fff;
+            background: #564163;
+        }
+
+
+        a[data-toggle="collapse"] {
+            position: relative;
+        }
+
+        .dropdown-toggle::after {
+            display: block;
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+        }
+
+        ul ul a {
+            font-size: 0.9em !important;
+            padding-left: 30px !important;
+            background: #564163;
+        }
+
+/* ---------------------------------------------------
+    CONTENT STYLE
+----------------------------------------------------- */
+        #content {
+            width: calc(100% - 200px);
+            padding: 40px;
+            min-height: 100vh;
+            transition: all 1.3s;
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+
+        #content.active {
+            width: 100%;
+        }
+
+        #sidebarCollapse {
+            position: fixed;
+            right: 10px;
+            top: 0px;
+            width: 40px;
+            height: 40px;
+            background: #f5f5f5;
+            cursor: pointer;
+        }
+
+        #sidebarCollapse span {
+            width: 80%;
+            height: 2px;
+            margin: 0 auto;
+            display: block;
+            background: #555;
+            transition: all 0.8s cubic-bezier(0.810, -0.330, 0.345, 1.375);
+            transition-delay: 0.2s;
+        }
+
+        #sidebarCollapse span:first-of-type {
+            transform: rotate(45deg) translate(2px, 2px);
+        }
+
+        #sidebarCollapse span:nth-of-type(2) {
+            opacity: 0;
+        }
+
+        #sidebarCollapse span:last-of-type {
+            transform: rotate(-45deg) translate(1px, -1px);
+        }
+
+
+        #sidebarCollapse.active span {
+            transform: none;
+            opacity: 1;
+            margin: 5px auto;
+        }
+
+
+/* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+        @media (max-width: 768px) {
+            #sidebar {
+                margin-left: -200px;
+                transform: rotateY(90deg);
+            }
+
+            #sidebar.active {
+                margin-left: 0;
+                transform: none;
+            }
+
+            #content {
+                width: 100%;
+            }
+
+            #content.active {
+                width: calc(100% - 200px);
+            }
+
+            #sidebarCollapse span {
+                display: none;
+            }
+
+            #sidebarCollapse span:first-of-type,
+            #sidebarCollapse span:nth-of-type(2),
+            #sidebarCollapse span:last-of-type {
+                transform: none;
+                opacity: 1;
+                margin: 5px auto;
+            }
+
+            #sidebarCollapse.active span {
+                margin: 0 auto;
+            }
+
+            #sidebarCollapse.active span:first-of-type {
+                transform: rotate(45deg) translate(2px, 2px);
+            }
+
+            #sidebarCollapse.active span:nth-of-type(2) {
+                opacity: 0;
+            }
+
+            #sidebarCollapse.active span:last-of-type {
+                transform: rotate(-45deg) translate(1px, -1px);
+            }
+
+        }
+
+        /* 整個頁籤及內容最外層區塊 */
+                div.tab_container {
+            box-sizing: border-box;
+            color: #ffffff;
+        }
+
+        /* 頁籤區塊 */
+        div.tab_container div.tab_list_block {
+            padding-left: 20px;
+        }
+
+        /* 頁籤列表 */
+        div.tab_container div.tab_list_block ul.tab_list {
+            list-style: none;
+            display: inline-block;
+            margin: 0;
+            padding: 0;
+        }
+
+        div.tab_container div.tab_list_block ul.tab_list>li {
+            display: inline-block;
+            border-radius: 5px 5px 0 0;
+        }
+
+        div.tab_container div.tab_list_block ul.tab_list>li>a {
+            text-decoration: none;
+            display: inline-block;
+            border: 1px solid #71619D;
+            border-bottom: 1px solid #71619D;
+            background-color: #71619D;
+            padding: 2px 20px;
+            border-radius: 5px 5px 0 0;
+            cursor: pointer;
+            color: #ccc;
+            position: relative;
+            top: 1px;
+        }
+
+        /* 畫出底部黑線 */
+        div.tab_container div.tab_list_block ul.tab_list>li>a::after {
+            content: "";
+            position: absolute;
+            width: calc(100% + 2px);
+            height: 1px;
+            background-color: #71619D;
+            bottom: -1px;
+            left: -1px;
+            z-index: 1;
+        }
+
+        div.tab_container div.tab_list_block ul.tab_list>li>a.-on {
+            border: 1px solid #71619D;
+            border-bottom: 1px solid #71619D;
+            background-color: #BB44A3;
+        }
+
+        /* 頁籤內容區塊 */
+
+        div.tab_contents {
+            color: #332749;
+        }
+
+        div.tab_container div.tab_contents div.tab {
+            padding: 10px;
+            display: none;
+        }
+
+        div.tab_container div.tab_contents div.tab.-on {
+            display: block;
+        }
+
+        div>.emoji {
+            color: #ec4949;
+            line-height: 50px;
+            font-size: 50px;
+            font-family: emojiFont;
+            vertical-align: -30%;
+        }
+
+        .time > li {
+            margin-bottom: 10px;
+        }
     </style>
+
 </head>
 
 <body>
-    
+
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header" style="text-align: center;">
+                <h3>HelloTicket</h3>
+            </div>
+
+            <ul class="list-unstyled components">
+                <li class="active">
+                    <a href="#employeeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">員工管理</a>
+                    <ul class="collapse list-unstyled" id="employeeSubmenu">
+                        <li>
+                            <a href="#">員工新增</a>
+                        </li>
+                        <li>
+                            <a href="#">員工名冊</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#memberSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">會員管理</a>
+                    <ul class="collapse list-unstyled" id="memberSubmenu">
+                        <li>
+                            <a href="#">訂單管理</a>
+                        </li>
+                        <li>
+                            <a href="#">會員權限管理</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#productSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">商品管理</a>
+                    <ul class="collapse list-unstyled" id="productSubmenu">
+                        <li>
+                            <a href="#">商品上架</a>
+                        </li>
+                        <li>
+                            <a href="#">會員總覽</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#movieSubmenu" data-toggle="collapse" aria-expanded="false"
+                        class="dropdown-toggle">電影管理</a>
+                    <ul class="collapse list-unstyled" id="movieSubmenu">
+                        <li>
+                            <a href="#">電影上架</a>
+                        </li>
+                        <li>
+                            <a href="#">電影總覽</a>
+                        </li>
+                        <li>
+                            <a href="#">電影時刻表</a>
+                        </li>
+                        <li>
+                            <a href="#">電影評論管理</a>
+                        </li>
+                        <li>
+                            <a href="#">電影座位管理</a>
+                        </li>
+                        <li>
+                            <a href="#">電影選項設定</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">小遊戲管理</a>
+                </li>
+                <li>
+                    <a href="#">數據統計</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Page Content  -->
+        <div id="content">
+            <!-- 右上按鈕 -->
+            <div class="container-fluid">
+                <button type="button" id="sidebarCollapse" class="navbar-btn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            <!-- 右上按鈕 -->
+
+            <!-- 內容 -->
+
+            <div class="tab_container container">
+                <div class="tab_list_block">
+                    <ul class="tab_list time">
+                    </ul>
+                </div>
+        
+                <div class="tab_contents">
+                    <div class="tab tab1 -on">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col"
+                                                style="margin-bottom: 10px;padding-left: 5px;background-color: lightpink;">
+                                                A廳
+                                            </div>
+                                        </div>
+                                        <div class="row align-items-center">
+                                            <div class="col-4">
+                                                <ul>
+                                                    <li style="margin-top:14px;">09:00</li>
+                                                    <li>11:30</li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-1" style="background-color: red;min-width: 1px;min-height: 10vh;">
+                                            </div>
+                                            <div class="col" style="text-align: center;">鬼滅之刃續一千七百八十九集</div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="container">
+                                        <div class="row align-items-center">
+                                            <div class="col-4">
+                                                <ul>
+                                                    <li style="margin-top:14px;">09:00</li>
+                                                    <li>11:30</li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-1" style="background-color: red;min-width: 1px;min-height: 10vh;">
+                                            </div>
+                                            <div class="col" style="text-align: center;">鬼滅之刃續一千七百八十九</div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="container">
+                                        <div class="row align-items-center">
+                                            <div class="col-4">
+                                                <ul>
+                                                    <li style="margin-top:14px;">09:00</li>
+                                                    <li>11:30</li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-1" style="background-color: red;min-width: 1px;min-height: 10vh;">
+                                            </div>
+                                            <div class="col" style="text-align: center;">鬼滅之刃續一千七百八十九</div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="container">
+                                        <div class="row align-items-center">
+                                            <div class="col-4">
+                                                <ul>
+                                                    <li style="margin-top:14px;">09:00</li>
+                                                    <li>11:30</li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-1" style="background-color: red;min-width: 1px;min-height: 10vh;">
+                                            </div>
+                                            <div class="col" style="text-align: center;">鬼滅之刃續一千七百八十九集</div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                </div>
+                                <div class="col">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col"
+                                                style="margin-bottom: 10px;padding-left: 5px;background-color: lightpink;">
+                                                B廳
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="container">
+                                        <div class="row align-items-center">
+                                            <div class="col">
+                                                <div class="emoji">&#x1F3AC;</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                </div>
+                                <div class="col">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col"
+                                                style="margin-bottom: 10px;padding-left: 0px;margin-right: 0px;background-color: lightpink;box-sizing: border-box;">
+                                                C廳
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="container">
+                                        <div class="row align-items-center">
+                                            <div class="col">
+                                                <div class="emoji">&#x1F3AC;</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                </div>
+                                <div class="col">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col"
+                                                style="margin-bottom: 10px;padding-left: 0px;background-color: lightpink;">
+                                                D廳
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="container">
+                                        <div class="row align-items-center">
+                                            <div class="col">
+                                                <div class="emoji">&#x1F3AC;</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                </div>
+                                <div class="col">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col"
+                                                style="margin-bottom: 10px;padding-left: 0px;background-color: lightpink;">
+                                                E廳
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="container">
+                                        <div class="row align-items-center">
+                                            <div class="col">
+                                                <div class="emoji">&#x1F3AC;</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab tab2">
+                            頁籤二的內容
+                    </div>
+        
+                    <div class="tab tab3">
+                        頁籤三的內容<br>
+                        內容
+                    </div>
+                </div>
+
+         <!-- <div class="line"></div> 線-->
+
+        <!-- 內容 -->
+    </div>
+
+
     <script src="./vendors/jquery/jquery-3.5.1.min.js"></script>
     <script src="./vendors/popper/popper.min.js"></script>
     <script src="./vendors/bootstrap/js/bootstrap.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            
+            // 收縮視窗
+            $("#sidebar").mCustomScrollbar({
+                theme: "minimal"
+            });
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar, #content').toggleClass('active');
+                $(this).toggleClass('active');
+                $('.collapse.in').toggleClass('in');
+                $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+            });
+        });
+    </script>
     <script>
-        
+        let month = new Date().getMonth() + 1;
+        let day = new Date().getDate();
+        for (let i = 0; i < 3; i++) {
+            let timestamp = new Date(new Date().setDate(new Date().getDate() + i)).getTime();
+            let month = new Date(new Date().setDate(new Date().getDate() + i)).getMonth() + 1;
+            let day = new Date(new Date().setDate(new Date().getDate() + i)).getDate();
+            $(".time").append(`
+        <li><a href="#" data-target="tab${i + 1}" class="tab ${i === 0 ? "-on" : ""}">${month}月${day}日</a></li>
+    `)
+        }
+
+        $("button").on("click", function () {
+            console.log($(this).val());
+        })
+
+        $("a.tab").on("click", function (e) {
+            e.preventDefault();
+
+            /* 將頁籤列表移除所有 -on，再將指定的加上 -on */
+            $(this).closest("ul").find("a.tab").removeClass("-on");
+            $(this).addClass("-on");
+
+            /* 找到對應的頁籤內容，加上 -on 來顯示 */
+            $("div.tab").removeClass("-on");
+            $("div.tab." + $(this).attr("data-target")).addClass("-on");
+        });
     </script>
 </body>
 
